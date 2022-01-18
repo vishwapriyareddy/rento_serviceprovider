@@ -265,7 +265,7 @@ class _RegisterFormState extends State<RegisterForm> {
                               _authData
                                   .registerBoys(email, password)
                                   .then((credential) {
-                                if (credential.user!.uid != null) {
+                                if (credential!.user!.uid != null) {
                                   uploadFile(_authData.image.path).then((url) {
                                     if (url != null) {
                                       _authData.saveBoysDataToDb(
@@ -303,16 +303,16 @@ class _RegisterFormState extends State<RegisterForm> {
                     ),
                   ],
                 ),
-                SizedBox(height: 10),
-                InkWell(
-                  onTap: () {
-                    Navigator.pushNamed(context, LoginScreen.id);
-                  },
-                  child: Text('Already Registered?  Login here.',
-                      textAlign: TextAlign.end,
-                      style: TextStyle(
-                          color: Colors.blue, fontWeight: FontWeight.bold)),
-                ),
+                // SizedBox(height: 10),
+                // InkWell(
+                //   onTap: () {
+                //     Navigator.pushNamed(context, LoginScreen.id);
+                //   },
+                //   child: Text('Already Registered?  Login here.',
+                //       textAlign: TextAlign.end,
+                //       style: TextStyle(
+                //           color: Colors.blue, fontWeight: FontWeight.bold)),
+                // ),
               ],
             ),
           );

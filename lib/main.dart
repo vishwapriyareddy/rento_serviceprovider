@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         SplashScreen.id: (context) => SplashScreen(),
         LoginScreen.id: (context) => LoginScreen(),
         HomeScreen.id: (context) => HomeScreen(),
-        ResetPassword.id: (context) => ResetPassword(),
+        //  ResetPassword.id: (context) => ResetPassword(),
         RegisterScreen.id: (context) => RegisterScreen(),
       },
       builder: EasyLoading.init(),

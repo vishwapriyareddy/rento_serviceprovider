@@ -20,10 +20,18 @@ class AuthProvider extends ChangeNotifier {
   String? selectedAddress;
   bool permissionAllowed = false;
   String? email;
+  bool loading = false;
+  CollectionReference _boys = FirebaseFirestore.instance.collection('boys');
+
   getEmail(email) {
     this.email = email;
     notifyListeners();
   }
+
+  // isLoading() {
+  //   this.loading = true;
+  //   notifyListeners();
+  // }
 
   Future<File> getImage() async {
     final picker = ImagePicker();
@@ -100,7 +108,7 @@ class AuthProvider extends ChangeNotifier {
     return selectedAddress!;
   } //register vendorusers using email
 
-  Future<UserCredential> registerBoys(email, password) async {
+  Future<UserCredential?> registerBoys(email, password) async {
     this.email = email;
     notifyListeners();
     UserCredential? userCredential;
@@ -125,7 +133,7 @@ class AuthProvider extends ChangeNotifier {
     return userCredential!;
   }
 
-  Future<UserCredential> loginBoys(email, password) async {
+  Future<UserCredential?> loginBoys(email, password) async {
     this.email = email;
     notifyListeners();
     UserCredential? userCredential;
@@ -150,7 +158,7 @@ class AuthProvider extends ChangeNotifier {
       notifyListeners();
       print(e);
     }
-    return userCredential!;
+    return userCredential;
   }
 
   Future<void>? resetPassword(email) async {
@@ -158,7 +166,9 @@ class AuthProvider extends ChangeNotifier {
     notifyListeners();
     //UserCredential? userCredential;
     try {
-      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      await FirebaseAuth.instance
+          .sendPasswordResetEmail(email: email)
+          .whenComplete(() {});
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         error = 'No user found for that email.';
@@ -184,7 +194,7 @@ class AuthProvider extends ChangeNotifier {
   Future<void>? saveBoysDataToDb(
       {String? url, String? name, String? mobile, String? password, context}) {
     User? user = FirebaseAuth.instance.currentUser;
-    CollectionReference _boys = FirebaseFirestore.instance.collection('boys');
+
     _boys.doc(this.email).update({
       'uid': user!.uid,
       'name': name,

@@ -127,22 +127,22 @@ class _LoginScreenState extends State<LoginScreen> {
                                   width: 2)),
                           focusColor: Theme.of(context).primaryColor),
                     ),
-                    SizedBox(height: 10),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            Navigator.pushNamed(context, ResetPassword.id);
-                          },
-                          child: Text('Forgot Password ?',
-                              textAlign: TextAlign.end,
-                              style: TextStyle(
-                                  color: Colors.blue,
-                                  fontWeight: FontWeight.bold)),
-                        ),
-                      ],
-                    ),
+                    //SizedBox(height: 10),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.end,
+                    //   children: [
+                    //     InkWell(
+                    //       onTap: () {
+                    //         Navigator.pushNamed(context, ResetPassword.id);
+                    //       },
+                    //       child: Text('Forgot Password ?',
+                    //           textAlign: TextAlign.end,
+                    //           style: TextStyle(
+                    //               color: Colors.blue,
+                    //               fontWeight: FontWeight.bold)),
+                    //     ),
+                    //   ],
+                    // ),
                     SizedBox(height: 20),
                     Row(
                       children: [
@@ -186,15 +186,15 @@ class _LoginScreenState extends State<LoginScreen> {
                                             'Invalid Password..');
                                       }
                                     } else {
-                                      EasyLoading.showInfo(
-                                              'Need to complete registration')
-                                          .then((value) {
-                                        _authData.getEmail(email);
-                                        Navigator.pushNamed(
-                                            context, RegisterScreen.id);
-                                      });
-                                      // EasyLoading.showError(
-                                      //     '$email does not registered as our Service Provider');
+                                      // EasyLoading.showInfo(
+                                      //         'Need to complete registration')
+                                      //     .then((value) {
+                                      //   _authData.getEmail(email);
+                                      //   Navigator.pushNamed(
+                                      //       context, RegisterScreen.id);
+                                      // });
+                                      EasyLoading.showError(
+                                          '$email does not registered as our Service Provider');
                                     }
                                   });
                                 }
@@ -209,16 +209,16 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 20),
-                    InkWell(
-                      onTap: () {
-                        //   Navigator.pushNamed(context, RegisterScreen.id);
-                      },
-                      child: Text('New Vendor?  Register here.',
-                          textAlign: TextAlign.end,
-                          style: TextStyle(
-                              color: Colors.blue, fontWeight: FontWeight.bold)),
-                    ),
+                    // SizedBox(height: 20),
+                    // InkWell(
+                    //   onTap: () {
+                    //     Navigator.pushNamed(context, RegisterScreen.id);
+                    //   },
+                    //   child: Text('New Vendor?  Register here.',
+                    //       textAlign: TextAlign.end,
+                    //       style: TextStyle(
+                    //           color: Colors.blue, fontWeight: FontWeight.bold)),
+                    // ),
                   ],
                 ),
               )),
